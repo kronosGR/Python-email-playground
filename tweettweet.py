@@ -1,4 +1,6 @@
+from sqlite3 import Cursor
 import tweepy
+import time
 
 # regenerate all when finished
 auth = tweepy.OAuthHandler('jDJSllbgO4uvgGlArUw0yk1Nl',
@@ -9,9 +11,20 @@ auth.set_access_token('261268802-BVe2nRyIHsfHZfsUlveYGhDCNtaS2FYmwByIbZAw',
 api = tweepy.API(auth)
 user = api.me()
 
-print(user.name)
-
 # public_tweets = api.home_timeline()
 
 # for tweet in public_tweets:
 #     print(tweet.text)
+
+def limit_handler(cursor):
+  try:
+    while True:
+      yield cursor.next()
+  except tweepy.RateLimitError:
+    time.sleep(1000)
+
+# bot
+for follower in limit_handler(tweepy.Cursor(api.followers).items()):
+  if follower.name =='afasia.gr':
+    follower.follow()
+  print(follower.name)
