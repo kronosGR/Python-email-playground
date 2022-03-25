@@ -1,9 +1,10 @@
 # Python Playground
 
 Not only for email, but also
-* Password checker
+
+- Password checker
   ```
   python3 checkmypass.py 123456
   ```
-* Twitter bot
-  
+- Twitter bot
+- SMS (twilio.com)
