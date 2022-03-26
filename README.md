@@ -8,3 +8,4 @@ Not only for email, but also
   ```
 - Twitter bot
 - SMS (twilio.com)
+- Web scrapping
